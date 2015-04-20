@@ -41,6 +41,10 @@ var Airplane = {
 					var newSpeed = i;
 					console.log('Aircraft speed has been INCREASED to ' + newSpeed + ' mph.')
 				}
+			Object.defineProperty(Airplane, 'mySpeed', {
+				value: newSpeed,
+				writable: true
+			})
 			}
 		}
 	},
@@ -65,6 +69,10 @@ var Airplane = {
 					console.log('Aircraft speed has been DECREASED to ' + newSpeed + ' mph.')
 				}
 			}
+			Object.defineProperty(Airplane, 'mySpeed', {
+				value: newSpeed,
+				writable: true
+			})
 		}
 	},
 
@@ -78,6 +86,8 @@ var Airplane = {
 }
 
 
+// Commands to test Object attributes and behaviors
+
 console.log(Airplane);
 
 console.log(Airplane.myName);
@@ -88,10 +98,20 @@ console.log(Airplane.isGrounded);
 Airplane.takeFlight();
 
 Airplane.speedUp(Airplane.maxSpeed);
+console.log(Airplane.mySpeed);
 
-Airplane.slowDown(Airplane.stallSpeed);
+Airplane.slowDown(150);
+console.log(Airplane.mySpeed);
+
+Airplane.speedUp(405);
+console.log(Airplane.mySpeed);
+
+Airplane.slowDown(300);
+console.log(Airplane.mySpeed);
 
 //QUESTION: can the result of a behavior (function of the object) change a fundamental attribute of the object? e.g. speedUp function new speed output replaces the Airplane object's mySpeed attribute value defined initially?
+
+//ANSWER: YES!! Used Object.defineProperty() command.
 
 Airplane.sayCurrentCondition();
 
